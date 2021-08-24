@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+int main()
+{
+    int limit, i, sum = 0, array[100];
+
+    printf("\nInput the limit of the array: ");
+    scanf("%d", &limit);
+
+    printf("\n\n\nInput %d elements in the array: \n", limit);
+    for(i = 0; i < limit; i++)
+    {
+        printf("\nElement [%d]: ",i);
+        scanf("%d", &array[i]);
+        sum += array[i];
+    }
+
+    printf("\n\nSum of %d elements in the array: %d\n\n", limit, sum);
+
+
+    return 0;
+}
