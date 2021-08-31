@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+int main()
+{
+    int limit, i, j, deleteVal, foundVal=0, position,array[100];
+
+    printf("\nInput the limit of the Array: ");
+    scanf("%d", &limit);
+
+    printf("\n\n\nInput %d elements in the array: \n",limit);
+    for(i = 0; i < limit; i++)
+    {
+        printf("\nElement [%d]: ",i);
+        scanf("%d", &array[i]);
+
+    }
+
+    printf("\n\nInput the number you want to delete: ");
+    scanf("%d", &deleteVal);
+
+    for(i = 0; i < limit; i++)
+    {
+        if(array[i] == deleteVal)
+        {
+            foundVal = 1;
+            position = i;
+            break;  
+        }
+    }
+    if(foundVal == 1)
+        {
+        for(i = position; i < limit-1; i++)
+            array[i] = array[i + 1];
+        }
+    else
+    {
+        printf("The specified value is not in the array!");
+    }
+
+
+    printf("\n\nAfter the deletion of %d\n\n", deleteVal);
+
+    for(i = 0; i < limit-1; i++)
+    {
+        printf("\nElement [%d]: %d\n", i, array[i]);
+
+    }
+
+    return 0;
+}
