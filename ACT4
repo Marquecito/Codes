@@ -1,0 +1,76 @@
+#include<stdio.h>
+
+
+int main()
+{
+    int limit1, limit2, i, j, temp, deleteVal, foundVal=0, position, arrayFirst[100], arraySecond[100];
+
+    printf("\nInput the limit of the First Array: ");
+    scanf("%d", &limit1);
+
+    printf("\n\n\nInput %d elements in the array: \n",limit1);
+    for(i = 0; i < limit1; i++)
+    {
+        printf("\nFirst Array || Element [%d]: ",i);
+        scanf("%d", &arrayFirst[i]);
+    }
+
+    printf("\n\n\nInput the limit of the Second Array: ");
+    scanf("%d", &limit2);
+
+    printf("\n\n\nInput %d elements in the array: \n",limit2);
+    for(i = 0; i < limit2; i++)
+    {
+        printf("\nSecond Array || Element [%d]: ",i);
+        scanf("%d", &arraySecond[i]);
+    }
+
+    for(i = 0; i < limit2; i++){
+
+        arrayFirst[limit1+ i] = arraySecond[i];
+    }
+
+    for(i = 0; i < limit1 + limit2; i++){
+        for(j = i+1; j < limit1 + limit2; j++){
+
+            if(arrayFirst[i] > arrayFirst[j]){
+
+                temp = arrayFirst[i];
+                arrayFirst[i] = arrayFirst[j];
+                arrayFirst[j] = temp;
+            }
+        }
+
+    }
+
+    printf("\n\nInput the number you want to delete: ");
+    scanf("%d", &deleteVal);
+
+    for(i = 0; i < limit1 + limit2; i++)
+    {
+        if(arrayFirst[i] == deleteVal)
+        {
+            foundVal = 1;
+            position = i;
+            break;
+        }
+    }
+    if(foundVal == 1)
+    {
+        for(i = position; i < limit1-1 + limit2; i++)
+            arrayFirst[i] = arrayFirst[i + 1];
+    }
+    else
+    {
+        printf("The specified value is not in the array!");
+    }
+    
+    printf("\n\nAfter the deletion of %d\n\n", deleteVal);
+    
+    for(i = 0; i <limit1-1 + limit2; i++) {
+
+        printf("\nElement [%d]: %d", i, arrayFirst[i]);
+    }
+
+    return 0;
+}
