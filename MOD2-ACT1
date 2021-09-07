@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+
+int main()
+{
+
+    int limit, i ,array[100];
+    int *pointer = &array[0];
+
+    printf("\nInput the limit of the First Array: ");
+    scanf("%d", &limit);
+
+    printf("\n\n\nInput %d elements in the array: \n",limit);
+    
+    for(i = 0; i < limit; i++)
+    {
+        printf("\nElement [%d]: ",i);
+        scanf("%d", &array[i]);
+    }
+
+    printf("\nThe pointer indicates the entered elements in the array:\n");
+
+    for(i = 0; i < limit; i++)
+    {
+        printf("\nElement [%d]: %d ", i, *(pointer + i));
+    }
+
+    return 0;
+}
