@@ -5,9 +5,9 @@ int main()
 {
     int rows = 7, coef = 1, space, i, j;
 
-    printf("Enter the number of rows:");
+    printf("Enter the number of rows:"); //USER-DEFINED
 
-    scanf("%d", &rows);
+    scanf("%d", &rows); //USER-DEFINED
 
     for (i = 0; i < rows; i++) {
 
