@@ -1,0 +1,164 @@
+#include<stdio.h>
+
+
+int main()
+{
+    int option, readArray[100][100], transposedArray[100][100], rowLimit, columnLimit, i, j;
+    int tryAgain;
+    int sumArray[100][100], total;
+
+    reset:
+    printf("\n1 - Read the matrix and display them\n2 - Transposing a matrix and display them\n3 - Calculate the sum of two matrices\n\n");
+    printf("\nHi pi! Please pick an option: ");
+    scanf("%d", &option);
+
+    if(option == 1){
+
+        printf("\n\n//Read and displaying a n x n matrix//\n\n");
+
+        printf("\nInput the limit of the rows: ");
+        scanf("%d", &rowLimit);
+        printf("\nInput the limit of the columns: ");
+        scanf("%d", &columnLimit);
+
+        printf("\n\nInput elements in the array: \n");
+        for(i = 0; i < rowLimit; i++)
+        {
+            for(j = 0; j < columnLimit; j++)
+            {
+                printf("\nElement [%d][%d]: ", i, j);
+                scanf("%d", &readArray[i][j]);
+            }
+        }
+
+        printf("\nThe result is: ");
+
+        for(i = 0; i < rowLimit; i++)
+        {
+            printf("\n");
+            for(j = 0; j < columnLimit; j++)
+            {
+                printf(" %d", readArray[i][j]);
+
+            }
+        }
+        goto retry;
+
+    }else if(option == 2){
+
+        printf("\n\n//Transposing a n x n matrix//\n\n");
+
+        printf("\nInput the limit of the rows: ");
+        scanf("%d", &rowLimit);
+        printf("\nInput the limit of the columns: ");
+        scanf("%d", &columnLimit);
+
+        printf("\n\nInput elements in the array: \n");
+        for(i = 0; i < rowLimit; i++)
+        {
+            for(j = 0; j < columnLimit; j++)
+            {
+                printf("\nElement [%d][%d]: ", i, j);
+                scanf("%d", &readArray[i][j]);
+            }
+        }
+
+        printf("\n\nThe Original Matrix: ");
+
+        for(i = 0; i < rowLimit; i++)
+        {
+            printf("\n");
+            for(j = 0; j < columnLimit; j++)
+            {
+                printf(" %d", readArray[i][j]);
+
+            }
+        }
+
+
+
+        printf("\n\nTransposed Matrix:");
+
+        for(i = 0; i < columnLimit; i++)
+        {
+            printf("\n");
+            for(j = 0; j < rowLimit; j++)
+            {
+
+                transposedArray[i][j] = readArray[j][i];
+                printf(" %d", transposedArray[i][j]);
+
+            }
+        }
+        goto retry;
+
+    }else if(option == 3){
+
+        printf("\n\n//Sum of Two Matrices//\n\n");
+
+        printf("\nInput the limit of the rows for the two matrices: ");
+        scanf("%d", &rowLimit);
+        printf("\nInput the limit of the columns for the two matrices: ");
+        scanf("%d", &columnLimit);
+
+        printf("\n\nInput elements in the First Matrix: \n");
+        for(i = 0; i < rowLimit; i++)
+        {
+            for(j = 0; j < columnLimit; j++)
+            {
+                printf("\nFirst Matrix || Element [%d][%d]: ", i, j);
+                scanf("%d", &readArray[i][j]);
+            }
+        }
+
+        printf("\n\nInput elements in the Second Matrix: \n");
+        for(i = 0; i < rowLimit; i++)
+        {
+            for(j = 0; j < columnLimit; j++)
+            {
+                printf("\nSecond Matrix || Element [%d][%d]: ", i, j);
+                scanf("%d", &transposedArray[i][j]);
+            }
+        }
+
+        printf("\n\nThe result is: ");
+
+        for(i = 0; i < columnLimit; i++)
+        {
+            printf("\n");
+            for(j = 0; j < rowLimit; j++)
+            {
+
+                sumArray[i][j] = transposedArray[i][j] + readArray[i][j];
+                printf(" %d", sumArray[i][j]);
+
+            }
+        }
+        goto retry;
+
+    }else{
+
+        printf("\nThis option is invalid!");
+
+    }
+
+    retry:
+    printf("\n\n Try again?\n\n 1 - Yes\n 2 - No\n\n");
+    scanf("%d", &tryAgain);
+
+    if(tryAgain == 1){
+
+        goto reset;
+
+    }else if(tryAgain == 2){
+
+        printf("\nI'm terminating the program. Bye!");
+
+    }else{
+
+        printf("\nThis option is invalid again! Okay that's it. I'm terminating the program.\n\nI HATE YOU!");
+    }
+
+
+    return 0;
+}
