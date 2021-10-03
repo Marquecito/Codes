@@ -1,0 +1,164 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    struct node *prevLink;
+    int data;
+    struct node *nextLink;
+}*head, *end;
+
+void createList(int limit);
+void displayList();
+struct node *deleteBeg(struct node *head);
+struct node *deleteEnd(struct node *head);
+
+
+void deleteNode(struct node** headRef, int key)
+{
+
+    struct node *temp = *headRef, *prev;
+
+    if (temp != NULL && temp->data == key) {
+        *headRef = temp->nextLink;
+        free(temp);
+        return;
+    }
+
+    while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->nextLink;
+    }
+
+    prev->nextLink = temp->nextLink;
+    printf("\nNode deleted = %d\n", temp->data);
+    free(temp);
+}
+
+int main() {
+
+    int option, limit, key;
+
+    printf("\n// Menu Options:"
+           "\n"
+           "\n"
+           "\n1 = Create a Linked List"
+           "\n2 = Display the Linked List"
+           "\n3 = Delete a node from the beginning"
+           "\n4 = Delete a node from the end"
+           "\n5 = Delete a node using its value"
+           "\n6 = EXIT"
+           "\n\nAnswer: ");
+    scanf("%d", &option);
+
+    switch(option)
+    {
+        case 1:
+            printf("\nInput the number of nodes in the list: ");
+            scanf("%d", &limit);
+            createList(limit);
+            return main();
+        case 2:
+            printf("\nThe Nodes in the list: \n\n");
+            displayList();
+            return main();
+        case 3: head = deleteBeg(head);
+            break;
+        case 4: head = deleteEnd(head);
+            break;
+        case 5:
+            printf("\nInput the value of the node which is to be deleted: ");
+            scanf("%d", &key);
+            deleteNode(&head, key);
+            return main();
+        case 6:
+            return 0;
+        default:
+            printf("\nThat's an invalid option!");
+            return main();
+    }
+
+    return 0;
+
+}
+
+void createList(int limit) {
+
+    struct node *newNode;
+    int data, i;
+
+    if (limit >= 1) {
+
+        head = (struct node *) malloc(sizeof(struct node));
+
+        if (head != NULL) {
+
+            printf("\nNode 1:");
+            scanf("%d", &data);
+            head->data = data;
+            head->prevLink = NULL;
+            head->nextLink = NULL;
+            end = head;
+        }
+    }
+
+    for (i= 1; i < limit; i++) {
+
+        newNode = (struct node *)malloc(sizeof (struct node));
+
+        if(newNode != NULL){
+
+            printf("Node %d:", i+1);
+            scanf("%d", &data);
+
+            newNode->data = data;
+            newNode->prevLink = end;
+            newNode->nextLink = NULL;
+
+            end->nextLink = newNode;
+            end = newNode;
+
+        }else{
+            printf("\nMemory cannot be allocated.");
+        }
+    }
+}
+
+void displayList()
+{
+    struct node *temp;
+
+    if(head == NULL)
+    {
+        printf("Life is empty.");
+    }
+    else
+    {
+        temp = head;
+        while(temp != NULL)
+        {
+            printf("Node = %d\n", temp->data);
+            temp = temp->nextLink;
+        }
+    }
+}
+
+struct node *deleteBeg(struct node *head)
+{
+    struct node *current = head;
+    printf("\nNode deleted = %d\n", current->data);
+    free(current);
+    return main();
+}
+
+struct node *deleteEnd(struct node *head)
+{
+    struct node *current;
+    current = head;
+    while(current -> nextLink != NULL)
+        current = current -> nextLink;
+    current -> prevLink -> nextLink = NULL;
+    printf("\nNode deleted = %d\n", current->data);
+    free(current);
+    return main();
+}
+
